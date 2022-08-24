@@ -1,0 +1,102 @@
+@media (max-width: 700px){
+
+body{
+    background-color: #E5E5E5;
+}
+
+header{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+
+}
+
+header img{
+    width: 75px;
+    height: 53px;
+    margin-left: 22px;
+
+}
+
+header ion-icon{
+    width: 45px;
+    height: 45px;
+    margin-right: 22px;
+}
+
+footer{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+footer input{
+    width: 100%;
+    height: 30px;
+    margin-left: 15px;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 21.09px;
+    border: 0;
+
+}
+
+footer input::placeholder{
+    color: black;
+}
+
+footer button{
+    width: 70px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background-color: #FFFFFF;
+    
+}
+
+footer ion-icon{
+    width: 30px;
+    height: 30px;
+    
+
+}
+
+.chat{
+    
+    width: 100%;
+    height: 745px;
+    background-color: #E5E5E5;
+    position: fixed;
+    overflow: auto;
+    margin-top: 90px;
+    margin-bottom: 80px;
+    right: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+
+
+.mensagem_global{
+    margin-bottom: 5px;
+    height: 50px;
+}
+
+
+    }
+    
