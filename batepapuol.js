@@ -20,7 +20,7 @@ const entrar = () => {
         axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nome)
             .then((m) => {
                 statuz = m.status;
-                console.log('enviou');
+               
                 if(statuz === 200){
                     document.querySelector('.tela_entrada').classList.add('hidden');
                     document.querySelector('.mainpage').classList.remove('hidden');
@@ -29,16 +29,11 @@ const entrar = () => {
                     setInterval(() => {
                         axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nome)
                             .then(() => {
-                                console.log('Status online');
+                               
                             });
                     }, 2000)
 
-                    setInterval(() => {
-                        axios.get('https://mock-api.driven.com.br/api/v6/uol/participants ')
-                            .then((po) => {
-                                console.log(po.data);
-                            })
-                    }, 2000)
+                   
                 }
             })
             .catch((z) => {
@@ -58,11 +53,14 @@ const entrar = () => {
 /* FUNÇÃO ENVIA MENSAGEM */
 const enviar = () => {
     const botao_enviar = document.querySelector('footer').querySelector('button');
+
+    
     
     botao_enviar.addEventListener('click', () => {
-        console.log('Clicou');
+       
         let mensagem = document.querySelector('footer').querySelector('input').value;
-        console.log(mensagem,nome_usuario);
+       
+
 
         let mensagem_servidor = {
             from: nome_usuario,
@@ -73,13 +71,16 @@ const enviar = () => {
 
         axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem_servidor)
             .then((qas) => {
-                console.log('Mensagem enviada para o servidor');
-                console.log(qas.data);
+                console.log('Mensagem enviada');
+                receber_mensagens();
             })
             .catch(() => {
-                console.log('Erro');
+                alert('Ocorreu algum erro, a página será atualizada!');
+                window.location.reload();
+            
             })
     })
+
 
 
 
@@ -92,12 +93,11 @@ const receber_mensagens = () => {
     let requisitar_mensagens = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     por_mensagens = document.querySelector('.conversas');
     
-
-   
+    
 
     let recebi_mensagens = () => {requisitar_mensagens.then((dados) => { 
         aaa = dados.data.length;
-        console.log(dados.data[0]);
+      
 
         let now =  new Date().toLocaleTimeString();
 
@@ -117,7 +117,7 @@ const receber_mensagens = () => {
    
             if (dados.data[bbb].type === "status"){
                 por_mensagens.innerHTML = por_mensagens.innerHTML + `
-                <div class="messagem">
+                <div class="messagem sstatus">
                     <span class="hour">(${now})</span>
                     <span class="usarname">${dados.data[bbb].from}</span>
                    
@@ -126,7 +126,7 @@ const receber_mensagens = () => {
                  </div>`
             }else if (dados.data[bbb].type === "message"){
                 por_mensagens.innerHTML = por_mensagens.innerHTML + `
-                <div class="messagem">
+                <div class="messagem message">
                     <span class="hour">(${now})</span>
                     <span class="usarname">${dados.data[bbb].from} para ${dados.data[bbb].to}: </span>
                    
@@ -134,7 +134,8 @@ const receber_mensagens = () => {
                   
                  </div>`
             }else if (dados.data[bbb].type === "private_message"){
-                por_mensagens.innerHTML = por_mensagens.innerHTML + `
+                if (dados.data.to === nome_usuario){
+                    por_mensagens.innerHTML = por_mensagens.innerHTML + `
                 <div class="messagem">
                     <span class="hour">(${now}) </span>
                     <span class="usarname">${dados.data[bbb].from} para ${dados.data[bbb].to}: </span>
@@ -142,6 +143,8 @@ const receber_mensagens = () => {
                     ${dados.data[bbb].text}
                   
                  </div>`
+                }
+            
             }
             
                 bbb++;
@@ -168,7 +171,7 @@ const load = () =>{
 
 entrar();
 enviar();
-setInterval(receber_mensagens, 2000);
+setInterval(receber_mensagens, 300);
 
 
 
