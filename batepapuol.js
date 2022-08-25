@@ -17,6 +17,7 @@ const entrar = () => {
                 if(statuz === 200){
                     document.querySelector('.tela_entrada').classList.add('hidden');
                     document.querySelector('.mainpage').classList.remove('hidden');
+                    document.querySelector('body').classList.add('fundo_body2');
 
                     setInterval(() => {
                         axios.post('https://mock-api.driven.com.br/api/v6/uol/status', nome)
