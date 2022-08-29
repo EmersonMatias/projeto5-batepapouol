@@ -6,6 +6,7 @@ let aaa;
 let bbb = 0;
 let por_mensagens;
 let scrolla;
+let mensagem;
 
 
 /*FUNÇÃO ENTRAR*/ 
@@ -58,8 +59,9 @@ const enviar = () => {
     
     botao_enviar.addEventListener('click', () => {
        
-        let mensagem = document.querySelector('footer').querySelector('input').value;
-       
+        mensagem = document.querySelector('footer').querySelector('input').value;
+        let mensagem_reset = document.querySelector('footer').querySelector('input')
+        console.log('clicou');
 
 
         let mensagem_servidor = {
@@ -72,7 +74,9 @@ const enviar = () => {
         axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', mensagem_servidor)
             .then((qas) => {
                 console.log('Mensagem enviada');
+                mensagem_reset.innerHTML = '<input type="text" placeholder="Escreva aqui...">';
                 receber_mensagens();
+                
             })
             .catch(() => {
                 alert('Ocorreu algum erro, a página será atualizada!');
@@ -118,7 +122,7 @@ const receber_mensagens = () => {
             if (dados.data[bbb].type === "status"){
                 por_mensagens.innerHTML = por_mensagens.innerHTML + `
                 <div class="messagem sstatus">
-                    <span class="hour">(${now})</span>
+                    <span class="hour">(${dados.data[bbb].time})</span>
                     <span class="usarname">${dados.data[bbb].from}</span>
                    
                     ${dados.data[bbb].text}
@@ -127,8 +131,10 @@ const receber_mensagens = () => {
             }else if (dados.data[bbb].type === "message"){
                 por_mensagens.innerHTML = por_mensagens.innerHTML + `
                 <div class="messagem message">
-                    <span class="hour">(${now})</span>
-                    <span class="usarname">${dados.data[bbb].from} para ${dados.data[bbb].to}: </span>
+                    <span class="hour">(${dados.data[bbb].time})</span>
+                    <span class="usarname">${dados.data[bbb].from}</span>
+                    <span> para </span>
+                    <span class="usarname">${dados.data[bbb].to}: </span>
                    
                     ${dados.data[bbb].text}
                   
@@ -137,7 +143,7 @@ const receber_mensagens = () => {
                 if (dados.data.to === nome_usuario){
                     por_mensagens.innerHTML = por_mensagens.innerHTML + `
                 <div class="messagem">
-                    <span class="hour">(${now}) </span>
+                    <span class="hour">(${dados.data[bbb].time}) </span>
                     <span class="usarname">${dados.data[bbb].from} para ${dados.data[bbb].to}: </span>
                    
                     ${dados.data[bbb].text}

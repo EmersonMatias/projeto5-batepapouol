@@ -1,17 +1,22 @@
-@media (max-width: 700px){
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body{
     background-color: #FFFFFF;
 }
 
 .fundo_body2{
-    background-color: #E7E7E7;
+    background-color: #E5E5E5;
 
 }
 
 .mainpage{
+
     width: 100%;
-    position: relative;
+    height: 100%;
+    padding-top: 90px;
+    padding-bottom: 80px;
+    font-family: Roboto;
+  
 }
 
 .tela_entrada{
@@ -64,12 +69,11 @@ header{
     position: fixed;
     top: 0;
     right: 0;
-
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #FFFFFF;
-
 }
 
 header img{
@@ -94,6 +98,7 @@ footer{
     display: flex;
     align-items: center;
     background-color: #FFFFFF;
+    z-index: 1;
 }
 
 footer input{
@@ -105,6 +110,7 @@ footer input{
     font-style: italic;
     line-height: 21.09px;
     border: 0;
+    z-index: 1;
 
 }
 
@@ -114,49 +120,60 @@ footer input::placeholder{
 
 footer button{
     width: 70px;
-    height: 80px;
+    height: 8.5vh;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 0;
-    background-color: #FFFFFF;
-    
+    background-color: #FFFFFF;  
 }
 
 footer ion-icon{
     width: 30px;
     height: 30px;
-    
-
 }
 
 .hidden{
     display: none;
 }
 
-.chat{
+
+.espaco{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100px;
     width: 100%;
-    margin-top: 80px;   
+    background-color: #E5E5E5;
+   
+
 }
 
-.conversas{
-    height: 77vh;
-    width: 100%;
-    margin-top: 20px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+
+.espaco2{
     position: fixed;
-    left: 0;
-    background-color: #E7E7E7;
-   
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    width: 100%;
+    background-color: #E5E5E5;
 }
+
+
+
+.conversas{
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+}
+
+
 
 
 
 .conversas .messagem{
     min-height: 40px;
     height: auto;
-    background-color: aqua;
     margin-bottom: 15px;
     font-size: 14px;
     line-height: 16.41px;
@@ -164,9 +181,7 @@ footer ion-icon{
     justify-items: center;
     border-radius: 7px;
     padding: 10px;
-    
-
-  
+    word-wrap: break-word;
 }
 
 .conversas .sstatus{
@@ -192,5 +207,3 @@ footer ion-icon{
 
 
 
-}
-    
